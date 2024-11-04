@@ -279,6 +279,7 @@ cilium-agent [flags]
       --kvstore-max-consecutive-quorum-errors uint                Max acceptable kvstore consecutive quorum errors before the agent assumes permanent failure (default 2)
       --kvstore-opt map                                           Key-value store options e.g. etcd.address=127.0.0.1:4001
       --kvstore-periodic-sync duration                            Periodic KVstore synchronization interval (default 5m0s)
+      --kvstore-policy-key-prefix string                          KVStore key prefix to watch and load Cilium network policy rules.
       --l2-announcements-lease-duration duration                  Duration of inactivity after which a new leader is selected (default 15s)
       --l2-announcements-renew-deadline duration                  Interval at which the leader renews a lease (default 5s)
       --l2-announcements-retry-period duration                    Timeout after a renew failure, before the next retry (default 2s)

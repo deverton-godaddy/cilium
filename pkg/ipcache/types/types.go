@@ -45,6 +45,7 @@ var (
 	ResourceKindDaemon   = ResourceKind("daemon")
 	ResourceKindEndpoint = ResourceKind("ep")
 	ResourceKindFile     = ResourceKind("file")
+	ResourceKindKVStore  = ResourceKind("kvstore")
 	ResourceKindNetpol   = ResourceKind("netpol")
 	ResourceKindNode     = ResourceKind("node")
 )

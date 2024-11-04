@@ -51,6 +51,7 @@ import (
 	"github.com/cilium/cilium/pkg/option"
 	policyDirectory "github.com/cilium/cilium/pkg/policy/directory"
 	policyK8s "github.com/cilium/cilium/pkg/policy/k8s"
+	policyKVWatcher "github.com/cilium/cilium/pkg/policy/kvwatcher"
 	"github.com/cilium/cilium/pkg/pprof"
 	"github.com/cilium/cilium/pkg/proxy"
 	"github.com/cilium/cilium/pkg/recorder"
@@ -228,6 +229,9 @@ var (
 
 		// Directory policy watcher cell.
 		policyDirectory.Cell,
+
+		// KVStore policy watcher cell
+		policyKVWatcher.Cell,
 
 		// ClusterMesh is the Cilium's multicluster implementation.
 		cell.Config(cmtypes.DefaultClusterInfo),

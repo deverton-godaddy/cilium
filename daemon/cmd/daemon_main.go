@@ -97,6 +97,7 @@ import (
 	"github.com/cilium/cilium/pkg/policy"
 	policyDirectory "github.com/cilium/cilium/pkg/policy/directory"
 	policyK8s "github.com/cilium/cilium/pkg/policy/k8s"
+	policyKVWatcher "github.com/cilium/cilium/pkg/policy/kvwatcher"
 	"github.com/cilium/cilium/pkg/promise"
 	"github.com/cilium/cilium/pkg/proxy"
 	"github.com/cilium/cilium/pkg/rate"
@@ -1670,6 +1671,8 @@ type daemonParams struct {
 	IPCache                *ipcache.IPCache
 	DirectoryPolicyWatcher *policyDirectory.PolicyResourcesWatcher
 	DirReadStatus          policyDirectory.DirectoryWatcherReadStatus
+	KVStorePolicyWatcher   policyKVWatcher.ResourcesWatcher
+	KVWatcherListStatus    policyKVWatcher.KVWatcherListStatus
 	CNIConfigManager       cni.CNIConfigManager
 	SwaggerSpec            *server.Spec
 	HealthAPISpec          *healthApi.Spec
@@ -1818,6 +1821,9 @@ func startDaemon(d *Daemon, restoredEndpoints *endpointRestoreState, cleaner *da
 
 	// wait for directory watcher to ingest policy from files
 	<-params.DirReadStatus
+
+	// wait for kvstore watcher to ingest policy from kvstore
+	<-params.KVWatcherListStatus
 
 	bootstrapStats.k8sInit.End(true)
 

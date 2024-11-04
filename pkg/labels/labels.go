@@ -153,6 +153,9 @@ const (
 	// LabelKeyFixedIdentity is the label that can be used to define a fixed
 	// identity.
 	LabelKeyFixedIdentity = "io.cilium.fixed-identity"
+
+	// LabelSourceKVStore is the label source for policies read from the kvstore
+	LabelSourceKVStore = "kvstore"
 )
 
 // Label is the Cilium's representation of a container label.

@@ -736,6 +736,10 @@ func newDaemon(ctx context.Context, cleaner *daemonCleanup, params *daemonParams
 		bootstrapStats.kvstore.Start()
 		d.initKVStore(params.ServiceResolver)
 		bootstrapStats.kvstore.End(true)
+
+		if params.KVStorePolicyWatcher != nil {
+			params.KVStorePolicyWatcher.WatchKVPolicyResources(d.ctx, &d)
+		}
 	}
 
 	// Fetch the router (`cilium_host`) IPs in case they were set a priori from
